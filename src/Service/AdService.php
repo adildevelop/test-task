@@ -15,13 +15,18 @@ class AdService
         $this->adRepository = new AdRepository();
     }
 
-    public function getOneById()
+    public function createAd(array $params): bool
     {
-        return $this->adRepository->findOneById(5);
+        return $this->adRepository->createAd($params['text'], (int) $params['price'], (int) $params['limit'], $params['banner']);
     }
 
-    public function createAd(string $text, int $price, int $limit, string $banner)
+    public function getRelevant(): array
     {
-        $this->adRepository->createAd($text, $price, $limit, $banner);
+        return $this->adRepository->findRelevant();
+    }
+
+    public function updateAd(int $id, array $params): array
+    {
+        return $this->adRepository->updateAd($id, $params['text'], (int) $params['price'], (int) $params['limit'], $params['banner']);
     }
 }

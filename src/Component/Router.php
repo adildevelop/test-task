@@ -10,16 +10,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Router
 {
-    public static function defineRoute(string $uri, string $method, ?array $parameters = null): Response
+    public static function defineRoute(string $uri, string $method, ?array $params = null): Response
     {
         $controller = new AdController();
 
         if ($uri === '/ads' && $method === 'POST') {
-            $res = $controller->createAd($parameters);
+            $res = $controller->createAd($params);
         }  elseif ($uri === '/ads/relevant' && $method === 'GET') {
             $res = $controller->getAd();
-        } elseif ($uri === '/ads' && $method === 'POST') {
-            $res = $controller->editAd($parameters);
+        } elseif (preg_match('/\/ads\/(\d+)/', $uri, $id) && $method === 'POST') {
+            $res = $controller->updateAd(intval($id[1]), $params);
         } else {
             $res = new JsonResponse([
                 'code' => '404',

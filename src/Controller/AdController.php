@@ -19,20 +19,22 @@ class AdController
 
     public function createAd(array $params): Response
     {
-        $this->adService->createAd($params['text'], (int) $params['price'], (int) $params['limit'], $params['banner']);
+        $this->adService->createAd($params);
 
         return new JsonResponse();
     }
 
     public function getAd(): Response
     {
-        $res = $this->adService->getOneById();
+        $res = $this->adService->getRelevant();
 
         return new JsonResponse($res);
     }
 
-    public function editAd(array $params): Response
+    public function updateAd(int $id, array $params): Response
     {
-        return new JsonResponse();
+        $res = $this->adService->updateAd($id, $params);
+
+        return new JsonResponse($res);
     }
 }
