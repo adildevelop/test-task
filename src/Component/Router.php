@@ -10,6 +10,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Router
 {
+    /**
+     * Routing logic imitation method
+     *
+     * @param string $uri
+     * @param string $method
+     * @param array|null $params
+     * @return Response
+     */
     public static function defineRoute(string $uri, string $method, ?array $params = null): Response
     {
         $controller = new AdController();

@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RequestParamValidator
 {
+    /**
+     * @var ValidatorInterface
+     */
     private ValidatorInterface $validator;
 
     public function __construct()
@@ -20,6 +23,13 @@ class RequestParamValidator
         $this->validator = Validation::createValidator();
     }
 
+    /**
+     * Request parameters validation logic
+     *
+     * @param array $params
+     * @return void
+     * @throws UnprocessableEntityException
+     */
     public function validate(array $params): void
     {
         $violations = $this->validator->validate($params['text'], [

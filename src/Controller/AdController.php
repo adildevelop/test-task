@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdController extends AbstractController
 {
+    /**
+     * @var AdService
+     */
     private AdService $adService;
 
     public function __construct()
@@ -16,6 +19,12 @@ class AdController extends AbstractController
         $this->adService = new AdService();
     }
 
+    /**
+     * Controller method for creating Ad
+     *
+     * @param array $params
+     * @return Response
+     */
     public function createAd(array $params): Response
     {
         $res = $this->adService->createAd($params);
@@ -23,6 +32,11 @@ class AdController extends AbstractController
         return $this->json($res);
     }
 
+    /**
+     * Controller method for get relevant Ad
+     *
+     * @return Response
+     */
     public function getAd(): Response
     {
         $res = $this->adService->getRelevant();
@@ -30,6 +44,13 @@ class AdController extends AbstractController
         return $this->json($res);
     }
 
+    /**
+     * Controller method for updating Ad
+     *
+     * @param int $id
+     * @param array $params
+     * @return Response
+     */
     public function updateAd(int $id, array $params): Response
     {
         $res = $this->adService->updateAd($id, $params);

@@ -12,8 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Kernel
 {
+    /**
+     * @var Response
+     */
     private Response $response;
 
+    /**
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $dotenv = Dotenv::createImmutable(__DIR__.'/../');
@@ -22,11 +28,22 @@ class Kernel
         $this->defineRoute($request);
     }
 
+    /**
+     * Return response from Kernel
+     *
+     * @return Response
+     */
     public function response(): Response
     {
         return $this->response->send();
     }
 
+    /**
+     * Process request to Router
+     *
+     * @param Request $request
+     * @return void
+     */
     private function defineRoute(Request $request)
     {
         $this->response = Router::defineRoute(
