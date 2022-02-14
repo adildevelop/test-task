@@ -29,10 +29,15 @@ abstract class AbstractController
      * Method using for return JsonResponse from controllers that extends this one
      *
      * @param array|null $data
+     * @param int $code
+     * @param string $message
      * @return Response
      */
-    protected function json(array $data = null): Response
+    protected function json(array $data = null, int $code = 200, string $message = "OK"): Response
     {
+        if ($code !== 200) $this->code = $code;
+        if ($message !== "OK") $this->message = $message;
+
         return new JsonResponse([
             'message' => $this->message,
             'code' => $this->code,

@@ -27,13 +27,17 @@ abstract class AbstractRepository
      * Method for fetching data from DB
      * @param string $query
      * @param array|null $params
-     * @return array
+     * @return array|null
      */
-    protected function fetch(string $query, ?array $params = null): array
+    protected function fetch(string $query, ?array $params = null): ?array
     {
         $res = $this->executeQuery($query, $params);
 
-        return $res->fetch(PDO::FETCH_ASSOC);
+        if (!$data = $res->fetch(PDO::FETCH_ASSOC)) {
+            return null;
+        }
+
+        return $data;
     }
 
     /**

@@ -32,9 +32,9 @@ class AdService
     /**
      * Service method for get relevant Ad
      *
-     * @return array
+     * @return array|null
      */
-    public function getRelevant(): array
+    public function getRelevant(): ?array
     {
         return $this->adRepository->findRelevant();
     }
@@ -44,9 +44,9 @@ class AdService
      *
      * @param int $id
      * @param array $params
-     * @return array
+     * @return array|null
      */
-    public function updateAd(int $id, array $params): array
+    public function updateAd(int $id, array $params): ?array
     {
         return $this->adRepository->updateAd($id, $params['text'], (int) $params['price'], (int) $params['limit'], $params['banner']);
     }
