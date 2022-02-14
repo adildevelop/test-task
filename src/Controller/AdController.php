@@ -39,13 +39,7 @@ class AdController extends AbstractController
      */
     public function getAd(): Response
     {
-        if (!$data = $this->adService->getRelevant()) {
-            $res = $this->json(null, 404, 'Not Found');
-        } else {
-            $res = $this->json($data);
-        }
-
-        return $res;
+        return ($data = $this->adService->getRelevant()) ? $this->json($data) : $this->notFound();
     }
 
     /**
@@ -57,12 +51,6 @@ class AdController extends AbstractController
      */
     public function updateAd(int $id, array $params): Response
     {
-        if (!$data = $this->adService->updateAd($id, $params)) {
-            $res = $this->json(null, 404, 'Not Found');
-        } else {
-            $res = $this->json($data);
-        }
-
-        return $res;
+        return ($data = $this->adService->updateAd($id, $params)) ? $this->json($data) : $this->notFound();
     }
 }
