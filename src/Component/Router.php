@@ -13,6 +13,9 @@ class Router
     public static function defineRoute(string $uri, string $method, ?array $params = null): Response
     {
         $controller = new AdController();
+        if ($method === 'POST' && $exceptionResponse = $controller->nullOrExceptionResponse($params)) {
+            return $exceptionResponse;
+        }
 
         if ($uri === '/ads' && $method === 'POST') {
             $res = $controller->createAd($params);

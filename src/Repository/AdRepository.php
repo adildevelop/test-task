@@ -6,9 +6,9 @@ namespace App\Repository;
 
 class AdRepository extends AbstractRepository
 {
-    public function createAd(string $text, int $price, int $limit, string $banner): bool
+    public function createAd(string $text, int $price, int $limit, string $banner): array
     {
-        return $this->query('INSERT INTO ad(text, price, view_limit, banner) VALUES(:text, :price, :limit, :banner)', [
+        return $this->fetch('INSERT INTO ad(text, price, view_limit, banner) VALUES(:text, :price, :limit, :banner) RETURNING id, text, banner', [
             'text' => $text,
             'price' => $price,
             'limit' => $limit,

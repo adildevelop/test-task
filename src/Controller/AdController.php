@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\AdService;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdController
+class AdController extends AbstractController
 {
     private AdService $adService;
 
@@ -19,22 +18,22 @@ class AdController
 
     public function createAd(array $params): Response
     {
-        $this->adService->createAd($params);
+        $res = $this->adService->createAd($params);
 
-        return new JsonResponse();
+        return $this->json($res);
     }
 
     public function getAd(): Response
     {
         $res = $this->adService->getRelevant();
 
-        return new JsonResponse($res);
+        return $this->json($res);
     }
 
     public function updateAd(int $id, array $params): Response
     {
         $res = $this->adService->updateAd($id, $params);
 
-        return new JsonResponse($res);
+        return $this->json($res);
     }
 }

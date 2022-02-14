@@ -15,7 +15,7 @@ class AdService
         $this->adRepository = new AdRepository();
     }
 
-    public function createAd(array $params): bool
+    public function createAd(array $params): array
     {
         return $this->adRepository->createAd($params['text'], (int) $params['price'], (int) $params['limit'], $params['banner']);
     }

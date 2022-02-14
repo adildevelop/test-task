@@ -17,25 +17,11 @@ abstract class AbstractRepository
         );
     }
 
-    protected function query(string $query, ?array $params = null): bool
-    {
-        $this->executeQuery($query, $params);
-
-        return true;
-    }
-
     protected function fetch(string $query, ?array $params = null): array
     {
         $res = $this->executeQuery($query, $params);
 
         return $res->fetch(\PDO::FETCH_ASSOC);
-    }
-
-    protected function fetchAll(string $query, ?array $params = null): array
-    {
-        $res = $this->executeQuery($query, $params);
-
-        return $res->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     private function executeQuery(string $query, ?array $params): \PDOStatement
