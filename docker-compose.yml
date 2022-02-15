@@ -28,3 +28,4 @@ services:
       POSTGRES_PASSWORD: db_password
     volumes:
       - ./docker/db_dump.sql:/docker-entrypoint-initdb.d/db_dump.sql
+      - ./docker/db_test_dump.sql:/docker-entrypoint-initdb.d/db_test_dump.sql

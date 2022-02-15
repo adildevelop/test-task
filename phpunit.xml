@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap = "vendor/autoload.php">
+    <testsuites>
+        <testsuite name="Test Task Project Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="DATABASE_HOST" value="db"/>
+        <env name="DATABASE_USER" value="db_user"/>
+        <env name="DATABASE_PASSWORD" value="db_password"/>
+        <env name="DATABASE_NAME" value="advertisement_test"/>
+    </php>
+</phpunit>
